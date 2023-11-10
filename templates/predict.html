@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Health Insurance Premium Predictor</h1>
+	<img src="{{ url_for('static', filename='health_insurance.jpeg') }}" alt="Health Insurance" width="600">
+    
+    <form method="POST" action="/predict">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+        
+        <label for="sex">Sex:</label>
+        <select id="sex" name="sex">
+            <option value="0">Male</option>
+            <option value="1">Female</option>
+        </select>
+        
+        <label for="bmi">BMI:</label>
+        <input type="number" id="bmi" name="bmi" step="0.01" min="0" required>
+        
+        <label for="children">Number of Children:</label>
+        <input type="number" id="children" name="children" step="1" min="0" required>
+        
+        <label for="smoker">Do you smoke?</label>
+        <select id="smoker" name="smoker">
+            <option value="0">Yes</option>
+            <option value="1">No</option>
+        </select>
+        
+        <label for="region">Region:</label>
+        <select id="region" name="region">
+            <option value="0">SouthEast</option>
+            <option value="1">SouthWest</option>
+            <option value="2">NorthEast</option>
+            <option value="3">NorthWest</option>
+        </select>
+        
+        <button type="submit">Predict</button>
+    </form>
+    
+    {% if prediction %}
+        <p>Predicted Premium: ${{ prediction }}</p>
+    {% endif %}
+</body>
+</html>
